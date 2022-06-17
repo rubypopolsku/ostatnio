@@ -58,6 +58,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def mark_as_done
+    @item = Item.find(params[:id])
+    @item.update(done_at: Time.zone.now)
+
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: "Marked as done." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
