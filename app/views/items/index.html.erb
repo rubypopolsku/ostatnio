@@ -11,6 +11,9 @@
           <strong>Done at:</strong>
           <%= item.realizations.last&.done_at %>
         </p>
+        <p class="card-text">
+          <strong>Done <%= item.realizations.size %> times</strong>
+        </p>
         <%= link_to "Show this item", item, class: "card-link" %>
         <%= link_to "mark as done", mark_as_done_item_path(item), class: "card-link" %>
       </div>
