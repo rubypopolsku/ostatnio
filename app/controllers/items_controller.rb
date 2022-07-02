@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1 or /items/1.json
   def show
+    @realizations = @item.realizations
   end
 
   # GET /items/new
@@ -60,10 +61,10 @@ class ItemsController < ApplicationController
 
   def mark_as_done
     @item = Item.find(params[:id])
-    @item.update(done_at: Time.zone.now)
+    @item.realizations.create(done_at: Time.zone.now)
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: "Marked as done." }
+      format.html { redirect_back(fallback_location: root_path, notice: "Marked as done") }
       format.json { head :no_content }
     end
   end

@@ -9,7 +9,7 @@
         <h5 class="card-title"><%= item.name %></h5>
         <p class="card-text">
           <strong>Done at:</strong>
-          <%= item.done_at %>
+          <%= item.realizations.last&.done_at %>
         </p>
         <%= link_to "Show this item", item, class: "card-link" %>
         <%= link_to "mark as done", mark_as_done_item_path(item), class: "card-link" %>
@@ -18,4 +18,4 @@
   <% end %>
 </div>
 
-<%= button_to "New item", new_item_path, class: "btn btn-primary" %>
+<%= link_to "New item", new_item_path, class: "btn btn-primary" %>

@@ -18,9 +18,15 @@ RSpec.describe "Items", type: :request do
       expect(response).to redirect_to(items_path)
     end
 
-    it "updates done_at" do
+    it "creates a new realization" do
+      expect do
+        get mark_as_done_item_path(@item)
+      end.to change(Realization, :count).by (1)
+    end
+
+    it "creates a new realization with done_at" do
       get mark_as_done_item_path(@item)
-      expect(@item.reload.done_at).not_to eq(nil)
+      expect(@item.reload.realizations.last.done_at).not_to eq(nil)
     end
   end
 

@@ -7,9 +7,31 @@
         <h5 class="modal-title"><%= @item.name %></h5>
       </div>
       <div class="modal-body">
-        <p><strong>Done at:</strong><%= @item.done_at %></p>
+        <p><strong>Done at:</strong>
+        <%= @item.realizations.last&.done_at %></p>
       </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Done at</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @realizations.each do |realization| %>
+            <tr>
+              <td><%= realization.done_at %></td>
+              <td>
+                <%= button_to "Destroy", item_realization_path(realization.item, realization), method: :delete, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
       <div class="modal-footer">
+        <%= link_to "mark as done", mark_as_done_item_path(@item), class: "btn btn-primary" %>
         <%= link_to "Edit this item", edit_item_path(@item), class: "btn btn-primary" %> 
         <%= button_to "Destroy this item", @item, method: :delete, class: "btn btn-danger" %>
       </div>
