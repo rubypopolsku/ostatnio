@@ -1,10 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @item %>
-
 <div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
-  <%= link_to "Back to items", items_path %>
-
-  <%= button_to "Destroy this item", @item, method: :delete %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= @item.name %></h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>Done at:</strong><%= @item.done_at %></p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Edit this item", edit_item_path(@item), class: "btn btn-primary" %> 
+        <%= button_to "Destroy this item", @item, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
 </div>
