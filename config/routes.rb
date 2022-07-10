@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :items do
     resources :realizations, only: [:destroy]
 
