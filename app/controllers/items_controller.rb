@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    @items = current_user.items
     @title = 'ostatnio'
   end
 
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @item.save
