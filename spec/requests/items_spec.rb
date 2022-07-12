@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Items", type: :request do
+  before do
+    @user = User.create(email: "test@gmail.com", password: "123456")
+    sign_in @user
+  end
+
   describe "GET /items" do
     it "returns expected status" do
       get items_path
@@ -10,12 +15,12 @@ RSpec.describe "Items", type: :request do
 
   describe "GET /items/:id/mark_as_done" do
     before do
-      @item = Item.create(name: "learn rails #{rand(10)}")
+      @item = Item.create(name: "learn rails #{rand(10)}", user: @user)
     end
 
     it "redirects to root page" do
       get mark_as_done_item_path(@item)
-      expect(response).to redirect_to(items_path)
+      expect(response).to redirect_to(root_path)
     end
 
     it "creates a new realization" do
