@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RealizationsController < ApplicationController
   def destroy
     @realization = Realization.find(params[:id])

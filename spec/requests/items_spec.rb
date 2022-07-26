@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "Items", type: :request do
   before do
@@ -26,7 +28,7 @@ RSpec.describe "Items", type: :request do
     it "creates a new realization" do
       expect do
         get mark_as_done_item_path(@item)
-      end.to change(Realization, :count).by (1)
+      end.to change(Realization, :count).by(1)
     end
 
     it "creates a new realization with done_at" do
@@ -46,7 +48,7 @@ RSpec.describe "Items", type: :request do
 
         expect do
           post items_path, params: params
-        end.to change(Item, :count).by (1)
+        end.to change(Item, :count).by(1)
       end
 
       it "redirects to item page" do
