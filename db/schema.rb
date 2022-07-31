@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_10_170810) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -22,10 +25,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_170810) do
 
   create_table "realizations", force: :cascade do |t|
     t.datetime "done_at"
-    t.integer "item_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "realizations_count"
     t.index ["item_id"], name: "index_realizations_on_item_id"
   end
 
