@@ -6,7 +6,7 @@
       </div>
       <div class="modal-body">
         <p><strong>Done at:</strong>
-        <%= @item.realizations.last&.done_at %></p>
+        <%= formatted_time(@item.realizations.last&.done_at) %></p>
       </div>
 
       <table class="table">
@@ -19,7 +19,7 @@
         <tbody>
           <% @realizations.each do |realization| %>
             <tr>
-              <td><%= realization.done_at %></td>
+              <td><%= formatted_time(realization.done_at) %></td>
               <td>
                 <%= button_to "Destroy", item_realization_path(realization.item, realization), method: :delete, class: "btn btn-danger" %>
               </td>

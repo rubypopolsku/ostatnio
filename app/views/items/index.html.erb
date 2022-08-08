@@ -7,7 +7,7 @@
         <h5 class="card-title"><%= item.name %></h5>
         <p class="card-text">
           <strong>Done at:</strong>
-          <%= item.realizations.last&.done_at %>
+          <%= formatted_time(item.realizations.last&.done_at) %>
         </p>
         <p class="card-text">
           <strong>Done <%= item.realizations.size %> times</strong>
